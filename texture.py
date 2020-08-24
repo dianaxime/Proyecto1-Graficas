@@ -45,8 +45,6 @@ class Texture(object):
     def get_color(self, tx, ty, intensity=1):
         x = int(tx * self.width)
         y = int(ty * self.height)
-        #x=int(tx)
-        #y=int(ty)
         try:
             return bytes(map(lambda b: round(b*intensity) if b*intensity > 0 else 0, self.pixels[y][x]))
         except:

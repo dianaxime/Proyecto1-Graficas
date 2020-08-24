@@ -241,17 +241,18 @@ class Render(object):
         B = next(self.active_vertex_array)
         self.line(round(A.x), round(A.y), round(B.x), round(B.y))
 
-    def triangleColor(self, selectColor):
+    def triangleFlat(self):
         A = next(self.active_vertex_array)
         B = next(self.active_vertex_array)
         C = next(self.active_vertex_array)
 
-        #print(A, B, C)
-
-        if self.activeNormals:
-            nA = next(self.active_vertex_array)
-            nB = next(self.active_vertex_array)
-            nC = next(self.active_vertex_array)
+        normal = cross(sub(B, A), sub(C, A))
+        intensity = dot(norm(normal), self.light)
+        grey = round(255 * intensity)
+        if grey < 0:
+            return
+        
+        selectColor = color(grey, grey, grey)
 
         xMin, xMax, yMin, yMax = bbox(A, B, C)
         for x in range(xMin, xMax + 1):
@@ -263,13 +264,26 @@ class Render(object):
                 
                 z = A.z * w + B.z * u + C.z * v
 
-                if self.activeNormals:
-                    selectColor = self.gourad(
-                        bar = (w, v, u),
-                        varying_normals = (nA, nB, nC),
-                        tcolor = selectColor
-                    )
+                if x < self.width and y < self.height and z > self.zbuffer[y][x]:
+                    self.point(x, y, selectColor)
+                    self.zbuffer[y][x] = z
+    
+    
+    def triangleColor(self, selectColor):
+        A = next(self.active_vertex_array)
+        B = next(self.active_vertex_array)
+        C = next(self.active_vertex_array)
+
+        xMin, xMax, yMin, yMax = bbox(A, B, C)
+        for x in range(xMin, xMax + 1):
+            for y in range(yMin, yMax + 1):
+                P = V2(x, y)
+                w, v, u = barycentric(A, B, C, P)
+                if w < 0 or v < 0 or u < 0:
+                    continue
                 
+                z = A.z * w + B.z * u + C.z * v
+
                 if x < self.width and y < self.height and z > self.zbuffer[y][x]:
                     self.point(x, y, selectColor)
                     self.zbuffer[y][x] = z
@@ -280,22 +294,19 @@ class Render(object):
         B = next(self.active_vertex_array)
         C = next(self.active_vertex_array)
 
-        print("v",A, B, C)
         
         if self.isActiveTexture:
             tA = next(self.active_vertex_array)
             tB = next(self.active_vertex_array)
             tC = next(self.active_vertex_array)
 
-        print("t",tA, tB, tC)
-
+        
         if self.activeNormals:
             nA = next(self.active_vertex_array)
             nB = next(self.active_vertex_array)
             nC = next(self.active_vertex_array)
 
-        print("n",nA, nB, nC)
-
+        
         xmin, xmax, ymin, ymax = bbox(A, B, C)
 
         normal = norm(cross(sub(B, A), sub(C, A)))
@@ -395,7 +406,6 @@ class Render(object):
         if self.isActiveTexture:
             tx, ty = kwargs['texture_coords']
             tcolor = self.active_texture.get_color(tx, ty)
-            print(tx, ty)
         # normals
         nA, nB, nC = kwargs['varying_normals']
 
@@ -426,13 +436,9 @@ class Render(object):
     def draw_arrays(self, polygon):
         if polygon == 'TEXTURE':
             try:
-                self.isActiveTexture = True
-                self.activeNormals = True
                 while True:
                     self.triangleTexture()
             except StopIteration:
-                self.isActiveTexture = False
-                self.activeNormals = False
                 print('Done model with texture.')
         elif polygon == 'LINES':
             try:
@@ -441,7 +447,6 @@ class Render(object):
             except StopIteration:
                 print('Done model only with lines.')
         elif polygon == 'COLORS':
-            self.activeNormals = True
             try:
                 while True:
                     self.triangleColor(
@@ -452,27 +457,18 @@ class Render(object):
                         )
                     )
             except StopIteration:
-                self.activeNormals = False
                 print('Done model with random colors.')
         elif polygon == 'FLAT':
             try:
-                self.activeNormals = True
                 while True:
-                    self.triangleColor(
-                        color(255, 255, 255)
-                    )
+                    self.triangleFlat()
             except StopIteration:
-                self.activeNormals = False
                 print('Done model with flat shading.')
         elif polygon == 'CUSTOM':
             try:
-                self.customShader = True
-                self.activeNormals = True
                 while True:
                     self.triangleTexture()
             except StopIteration:
-                self.customShader = False
-                self.activeNormals = False
                 print('Done model with custom shader.')
 
 
@@ -522,9 +518,8 @@ t = Texture('model.bmp')
 r.active_texture = t
 r.active_shader = fragment
 r.activeNormals = True
-r.isActiveTexture = True
-#r.draw_arrays('LINES')
-#r.lookAt(V3(0, 0, 30), V3(0, 0, 0), V3(5, 5, 5))
+r.customShader = True
+#r.isActiveTexture = True
 
 r.lookAt(V3(1, 0, 5), V3(0, 0, 0), V3(0, 1, 0))
 r.load('model.obj', V3(0, 0, 0), V3(1, 1, 1), V3(0, 0, 0))
@@ -534,6 +529,6 @@ r.lookAt(V3(0, 0, 10), V3(0, 0, -100), V3(0, 1, 0))
 
 r.load('fox.obj', V3(0, 0, 0), V3(1, 1, 1), rotate=(0, 1, 0))
 '''
-r.draw_arrays('TEXTURE')
+r.draw_arrays('CUSTOM')
 
 r.write()
