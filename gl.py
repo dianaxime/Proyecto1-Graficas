@@ -7,12 +7,13 @@
 '''
 
 from lib import Render
+from texture import Texture
 from utils import V2, V3
 
 bitmap = Render()
 
 
-def glInit(self):
+def glInit():
     pass
 
 
@@ -62,8 +63,41 @@ def glLine(x0, y0, x1, y1):
     bitmap.line(x0, y0, x1, y1)
 
 
-def glLoad(filename, translate, scale):
-    bitmap.load(filename, translate, scale)
+def glLoad(filename, translate, scale, rotate):
+    bitmap.load(filename, translate, scale, rotate)
+
+
+def glDrawFigure(figure):
+    bitmap.draw_arrays(figure)
+
+
+def glLookAt(eye, center, up):
+    bitmap.lookAt(eye, center, up)
+
+
+def glIsActiveTexture(boolean):
+    bitmap.isActiveTexture = boolean
+
+
+def glIsActiveNormals(boolean):
+    bitmap.activeNormals = boolean
+
+
+def glIsActiveShader(boolean):
+    bitmap.customShader = boolean
+
+
+def glChangeTexture(filename):
+    t = Texture(filename)
+    bitmap.active_texture = t
+
+
+def glChangeShader(shader):
+    bitmap.active_shader = shader
+
+
+def glChangeLight(light):
+    bitmap.light = light
 
 
 def glFinish(filename='out.bmp'):
@@ -72,9 +106,10 @@ def glFinish(filename='out.bmp'):
 
 glCreateWindow(1000, 1000)
 glClear()
-
-# bitmap.activeShader = 'TIERRA'
-#bitmap.activeShader = 'LUNA'
-#glLoad('./sphere.obj', V3(500, 500, 0), V3(500, 500, 200))
-# glFinish('tierra.bmp')
-#glFinish('luna.bmp')
+glIsActiveNormals(True)
+glIsActiveTexture(True)
+glChangeTexture('texture.bmp')
+glLookAt(V3(0, 0, 10), V3(0, 0, -100), V3(0, 1, 0))
+glLoad('fox.obj', V3(0, 0, 0), V3(0.01, 0.01, 0.01), rotate=(0, 1, 0))
+glDrawFigure('TEXTURE')
+glFinish()

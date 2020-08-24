@@ -22,10 +22,11 @@ WHITE = color(255, 255, 255)
     ****************************************
 '''
 
+
 class Render(object):
     def __init__(self):
-        self.framebuffer =[]
-        self.zbuffer =[]
+        self.framebuffer = []
+        self.zbuffer = []
         self.color = WHITE
         self.active_vertex_array = []
         self.active_texture = None
@@ -33,15 +34,15 @@ class Render(object):
         self.activeNormals = False
         self.customShader = False
         self.isActiveTexture = False
-        self.light = V3(0,0,1)
+        self.light = V3(0, 0, 1)
 
     def createWindow(self, width, height):
         self.width = width
         self.height = height
 
-    def point(self, x, y, selectColor = None):
+    def point(self, x, y, selectColor=None):
         try:
-            self.framebuffer[y][x] = selectColor or  self.color
+            self.framebuffer[y][x] = selectColor or self.color
         except:
             pass
 
@@ -104,9 +105,9 @@ class Render(object):
         a = rotate.y
         rotation_matrix_y = [
             [math.cos(a), 0,  math.sin(a), 0],
-            [     0, 1,       0, 0],
+            [0, 1,       0, 0],
             [-math.sin(a), 0,  math.cos(a), 0],
-            [     0, 0,       0, 1]
+            [0, 0,       0, 1]
         ]
 
         a = rotate.z
@@ -126,17 +127,17 @@ class Render(object):
             [0, 0, scale.z, 0],
             [0, 0, 0, 1],
         ]
-        
+
         result_matrix = MM(translation_matrix, rotation_matrix)
         result_matrix = MM(result_matrix, scale_matrix)
         self.Model = result_matrix
-        
+
     def loadViewMatrix(self, x, y, z, center):
         M = [
             [x.x, x.y, x.z, 0],
             [y.x, y.y, y.z, 0],
             [z.x, z.y, z.z, 0],
-            [0,0,0,1]
+            [0, 0, 0, 1]
         ]
 
         O = [
@@ -155,8 +156,8 @@ class Render(object):
             [0, 0, 1, 0],
             [0, 0, coeff, 1]
         ]
-    
-    def loadViewportMatrix(self, x = 0, y = 0):
+
+    def loadViewportMatrix(self, x=0, y=0):
         self.Viewport = [
             [self.width/2, 0, 0, x + self.width/2],
             [0, self.height/2, 0, y + self.height/2],
@@ -197,16 +198,16 @@ class Render(object):
         for x in range(x0, x1):
             if steep:
                 self.point(y, x)
-                
+
             else:
                 self.point(x, y)
-                
+
             offset += 2 * dy
             if offset >= threshold:
                 y += inc
                 threshold += 2 * dx
 
-    def write(self, filename = 'out.bmp'):
+    def write(self, filename='out.bmp'):
         f = open(filename, 'bw')
 
         f.write(char('B'))
@@ -235,7 +236,6 @@ class Render(object):
 
         f.close()
 
-
     def modelLines(self):
         A = next(self.active_vertex_array)
         B = next(self.active_vertex_array)
@@ -251,7 +251,7 @@ class Render(object):
         grey = round(255 * intensity)
         if grey < 0:
             return
-        
+
         selectColor = color(grey, grey, grey)
 
         xMin, xMax, yMin, yMax = bbox(A, B, C)
@@ -261,14 +261,13 @@ class Render(object):
                 w, v, u = barycentric(A, B, C, P)
                 if w < 0 or v < 0 or u < 0:
                     continue
-                
+
                 z = A.z * w + B.z * u + C.z * v
 
                 if x < self.width and y < self.height and z > self.zbuffer[y][x]:
                     self.point(x, y, selectColor)
                     self.zbuffer[y][x] = z
-    
-    
+
     def triangleColor(self, selectColor):
         A = next(self.active_vertex_array)
         B = next(self.active_vertex_array)
@@ -281,32 +280,28 @@ class Render(object):
                 w, v, u = barycentric(A, B, C, P)
                 if w < 0 or v < 0 or u < 0:
                     continue
-                
+
                 z = A.z * w + B.z * u + C.z * v
 
                 if x < self.width and y < self.height and z > self.zbuffer[y][x]:
                     self.point(x, y, selectColor)
                     self.zbuffer[y][x] = z
-                
 
     def triangleTexture(self):
         A = next(self.active_vertex_array)
         B = next(self.active_vertex_array)
         C = next(self.active_vertex_array)
 
-        
         if self.isActiveTexture:
             tA = next(self.active_vertex_array)
             tB = next(self.active_vertex_array)
             tC = next(self.active_vertex_array)
 
-        
         if self.activeNormals:
             nA = next(self.active_vertex_array)
             nB = next(self.active_vertex_array)
             nC = next(self.active_vertex_array)
 
-        
         xmin, xmax, ymin, ymax = bbox(A, B, C)
 
         normal = norm(cross(sub(B, A), sub(C, A)))
@@ -317,7 +312,7 @@ class Render(object):
         for x in range(xmin, xmax + 1):
             for y in range(ymin, ymax + 1):
                 w, v, u = barycentric(A, B, C, V2(x, y))
-                if w < 0 or v < 0 or u < 0:  
+                if w < 0 or v < 0 or u < 0:
                     continue
 
                 if self.isActiveTexture:
@@ -325,20 +320,19 @@ class Render(object):
                     ty = tA.y * w + tB.y * u + tC.y * v
 
                     selectColor = self.gourad(
-                        bar = (w, v, u),
-                        texture_coords = (tx, ty),
-                        varying_normals = (nA, nB, nC),
-                        tcolor = WHITE
+                        bar=(w, v, u),
+                        texture_coords=(tx, ty),
+                        varying_normals=(nA, nB, nC),
+                        tcolor=WHITE
                     )
 
                 if self.customShader:
                     selectColor = self.active_shader(
                         self,
-                        triangle = (A, B, C),
-                        bar = (w, v, u),
-                        varying_normals = (nA, nB, nC)
+                        triangle=(A, B, C),
+                        bar=(w, v, u),
+                        varying_normals=(nA, nB, nC)
                     )
-
 
                 z = A.z * w + B.z * u + C.z * v
 
@@ -349,7 +343,6 @@ class Render(object):
                     self.point(x, y, selectColor)
                     self.zbuffer[y][x] = z
 
-
     def transform(self, vertex):
         augmented_vertex = [
             [vertex.x],
@@ -359,24 +352,23 @@ class Render(object):
         ]
 
         transformed_vertex = MM(self.Projection, self.Viewport)
-        transformed_vertex = MM(transformed_vertex, self.View) 
+        transformed_vertex = MM(transformed_vertex, self.View)
         transformed_vertex = MM(transformed_vertex, self.Model)
         transformed_vertex = MM(transformed_vertex, augmented_vertex)
-        
+
         transformed_vertex = [
             transformed_vertex[0][0],
             transformed_vertex[1][0],
             transformed_vertex[2][0]
         ]
-        
-        return V3(*transformed_vertex)
 
+        return V3(*transformed_vertex)
 
     def load(self, filename, translate=(0, 0, 0), scale=(1, 1, 1), rotate=(0, 0, 0)):
         self.loadModelMatrix(translate, scale, rotate)
         model = Obj(filename)
         vertex_buffer_object = []
-    
+
         for face in model.faces:
             for facepart in face:
                 vertex = self.transform(V3(*model.vertices[facepart[0]-1]))
@@ -400,7 +392,7 @@ class Render(object):
     def gourad(self, **kwargs):
         # barycentric
         w, v, u = kwargs['bar']
-        
+
         tcolor = kwargs['tcolor']
         # texture
         if self.isActiveTexture:
@@ -413,9 +405,12 @@ class Render(object):
         iA, iB, iC = [dot(n, self.light) for n in (nA, nB, nC)]
         intensity = w * iA + u * iB + v * iC
         return color(
-            int(tcolor[2] * intensity) if (tcolor[0] * intensity > 0 and tcolor[0] * intensity < 255) else 0,
-            int(tcolor[1] * intensity) if (tcolor[1] * intensity > 0 and tcolor[1] * intensity < 255) else 0,
-            int(tcolor[0] * intensity) if (tcolor[2] * intensity > 0 and tcolor[2] * intensity < 255) else 0
+            int(tcolor[2] * intensity) if (tcolor[0] * intensity >
+                                           0 and tcolor[0] * intensity < 255) else 0,
+            int(tcolor[1] * intensity) if (tcolor[1] * intensity >
+                                           0 and tcolor[1] * intensity < 255) else 0,
+            int(tcolor[0] * intensity) if (tcolor[2] * intensity >
+                                           0 and tcolor[2] * intensity < 255) else 0
         )
 
     def gradient(self, **kwargs):
@@ -431,7 +426,6 @@ class Render(object):
         pColorB = round(color3[0] * w + color3[1] * u + color3[2] * v)
 
         return color(pColorR, pColorG, pColorB)
-
 
     def draw_arrays(self, polygon):
         if polygon == 'TEXTURE':
@@ -481,9 +475,9 @@ def fragment(render, **kwargs):
     t = A.x * w + B.x * u + C.x * v
     grey = int(t * 256)
     if grey < 0:
-        grey=0
+        grey = 0
     if grey > 255:
-        grey=255
+        grey = 255
     tcolor = color(grey, 100, 100)
     # normals
     nA, nB, nC = kwargs['varying_normals']
@@ -506,29 +500,34 @@ def fragment(render, **kwargs):
         intensity = 0
 
     return color(
-        int(tcolor[2] * intensity) if tcolor[0] * intensity > 0 and tcolor[0] * intensity < 255 else 0,
-        int(tcolor[1] * intensity) if tcolor[1] * intensity > 0 and tcolor[1] * intensity < 255 else 0,
-        int(tcolor[0] * intensity) if tcolor[2] * intensity > 0 and tcolor[2] * intensity < 255 else 0
+        int(tcolor[2] * intensity) if tcolor[0] *
+        intensity > 0 and tcolor[0] * intensity < 255 else 0,
+        int(tcolor[1] * intensity) if tcolor[1] *
+        intensity > 0 and tcolor[1] * intensity < 255 else 0,
+        int(tcolor[0] * intensity) if tcolor[2] *
+        intensity > 0 and tcolor[2] * intensity < 255 else 0
     )
 
-r = Render()
-r.createWindow(1024, 1024)
-r.clear()
-t = Texture('model.bmp')
-r.active_texture = t
-r.active_shader = fragment
-r.activeNormals = True
-r.customShader = True
+#r = Render()
+#r.createWindow(1024, 1024)
+# r.clear()
+#r.light = V3(0.2, 0.2, 0.6)
+#r.active_texture = t
+#r.active_shader = fragment
+#r.activeNormals = True
+#r.customShader = True
 #r.isActiveTexture = True
+# r.draw_arrays('LINES')
+# r.write()
 
-r.lookAt(V3(1, 0, 5), V3(0, 0, 0), V3(0, 1, 0))
-r.load('model.obj', V3(0, 0, 0), V3(1, 1, 1), V3(0, 0, 0))
 
-'''t = Texture('texture.bmp')
-r.lookAt(V3(0, 0, 10), V3(0, 0, -100), V3(0, 1, 0))
-
-r.load('fox.obj', V3(0, 0, 0), V3(1, 1, 1), rotate=(0, 1, 0))
 '''
-r.draw_arrays('CUSTOM')
-
-r.write()
+    CARA
+    t = Texture('model.bmp')
+    r.lookAt(V3(1, 0, 5), V3(0, 0, 0), V3(0, 1, 0))
+    r.load('model.obj', V3(0, 0, 0), V3(1, 1, 1), V3(0, 0, 0))
+    ZORRO
+    t = Texture('texture.bmp')
+    r.lookAt(V3(0, 0, 10), V3(0, 0, -100), V3(0, 1, 0))
+    r.load('fox.obj', V3(0, 0, 0), V3(0.01, 0.01, 0.01), rotate=(0, 1, 0))
+'''

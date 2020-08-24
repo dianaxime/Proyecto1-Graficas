@@ -7,6 +7,16 @@
 '''
 
 
+'''
+Cargar una modelo .Obj
+
+v  Vertices
+vt Textura
+vn Normales
+f  Caras
+'''
+
+
 def try_int(s, base=10, val=None):
     try:
         return int(s, base)
