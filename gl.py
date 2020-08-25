@@ -29,6 +29,10 @@ def glClear():
     bitmap.clear()
 
 
+def glCustomClear():
+    bitmap.customClearColor()
+
+
 def glClearColor(r, g, b):
     r = round(r * 255)
     g = round(g * 255)
@@ -106,6 +110,7 @@ def glFinish(filename='out.bmp'):
 
 glCreateWindow(1000, 1000)
 glClear()
+glCustomClear()
 glIsActiveNormals(True)
 glIsActiveTexture(True)
 glChangeTexture('texture.bmp')

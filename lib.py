@@ -70,6 +70,51 @@ class Render(object):
             for y in range(self.height)
         ]
 
+    '''
+    Gradiente
+    Extraido de:
+        https://en.wikibooks.org/wiki/Color_Theory/Color_gradient
+    '''
+
+    def customClearColor(self):
+        BLUE_1 = 20, 30, 100
+        BLUE_2 = 25, 40, 115
+        BLUE_3 = 30, 50, 130
+        BLUE_4 = 35, 60, 145
+        BLUE_5 = 40, 70, 160
+        r1, g1, b1 = BLUE_1
+        r2, g2, b2, = BLUE_2
+        
+        for x in range(self.height):
+            for y in range(self.width):
+                dc = 0
+                if y >= 0 and y < 256:
+                    r1, g1, b1 = BLUE_1
+                    r2, g2, b2 = BLUE_2
+                    if y > 200:
+                        dc = abs(y - 200)
+                elif y >= 256 and y < 512:
+                    r1, g1, b1 = BLUE_2
+                    r2, g2, b2 = BLUE_3
+                    if y > 460:
+                        dc = abs(y - 460)
+                elif y >= 512 and y < 768:
+                    r1, g1, b1 = BLUE_3
+                    r2, g2, b2 = BLUE_4
+                    if y > 720:
+                        dc = abs(y - 720)
+                elif y >= 768 and y < 1024:
+                    r1, g1, b1 = BLUE_4
+                    r2, g2, b2 = BLUE_5
+                    if y > 970:
+                        dc = abs(y - 970)
+                dc = dc / 50
+                r = round(r1 + dc * (r2 - r1))
+                g = round(g1 + dc * (g2 - g1))
+                b = round(b1 + dc * (b2 - b1))
+                selectColor = color(r, g, b)
+                self.point(x, y, selectColor)
+
     def setColor(self, r, g, b):
         self.color = color(r, g, b)
 
@@ -466,48 +511,6 @@ class Render(object):
                 print('Done model with custom shader.')
 
 
-def fragment(render, **kwargs):
-    # barycentric
-    w, v, u = kwargs['bar']
-    # coords
-    A, B, C = kwargs['triangle']
-
-    t = A.x * w + B.x * u + C.x * v
-    grey = int(t * 256)
-    if grey < 0:
-        grey = 0
-    if grey > 255:
-        grey = 255
-    tcolor = color(grey, 100, 100)
-    # normals
-    nA, nB, nC = kwargs['varying_normals']
-
-    # light intensity
-    iA, iB, iC = [dot(n, render.light) for n in (nA, nB, nC)]
-    intensity = w * iA + u * iB + v * iC
-
-    if (intensity > 0.85):
-        intensity = 1
-    elif (intensity > 0.60):
-        intensity = 0.80
-    elif (intensity > 0.45):
-        intensity = 0.60
-    elif (intensity > 0.30):
-        intensity = 0.45
-    elif (intensity > 0.15):
-        intensity = 0.30
-    else:
-        intensity = 0
-
-    return color(
-        int(tcolor[2] * intensity) if tcolor[0] *
-        intensity > 0 and tcolor[0] * intensity < 255 else 0,
-        int(tcolor[1] * intensity) if tcolor[1] *
-        intensity > 0 and tcolor[1] * intensity < 255 else 0,
-        int(tcolor[0] * intensity) if tcolor[2] *
-        intensity > 0 and tcolor[2] * intensity < 255 else 0
-    )
-
 #r = Render()
 #r.createWindow(1024, 1024)
 # r.clear()
@@ -519,8 +522,6 @@ def fragment(render, **kwargs):
 #r.isActiveTexture = True
 # r.draw_arrays('LINES')
 # r.write()
-
-
 '''
     CARA
     t = Texture('model.bmp')
