@@ -111,10 +111,39 @@ def glFinish(filename='out.bmp'):
 glCreateWindow(1000, 1000)
 glClear()
 glCustomClear()
-glIsActiveNormals(True)
-glIsActiveTexture(True)
-glChangeTexture('texture.bmp')
-glLookAt(V3(0, 0, 10), V3(0, 0, -100), V3(0, 1, 0))
-glLoad('fox.obj', V3(0, 0, 0), V3(0.01, 0.01, 0.01), rotate=(0, 1, 0))
-glDrawFigure('TEXTURE')
+#glIsActiveNormals(True)
+#glIsActiveTexture(True)
+#glChangeTexture('bamboo_shark.bmp')
+'''
+glLookAt(V3(0, 0, -0.5), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('bamboo_shark.obj', V3(0, 0.5, 0), V3(0.001, 0.001, 0.001), rotate=(-0.50, -0.50, 0))
+'''
+'''
+glLookAt(V3(1, 1, 100), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('CitizenSnipsV2_1.obj', V3(0, 0, 0), V3(3, 3, 3), rotate=(0, 0, 0))
+'''
+'''
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(-0.9, -1, 0), V3(0.1, 0.1, 0.1), rotate=(0, 0, 0))
+'''
+'''
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-purple.obj', V3(0.8, -0.9, 0), V3(0.25, 0.25, 0.25), rotate=(0.75, 0, 0))
+'''
+'''
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('tuna.obj', V3(0, 0, 0), V3(0.1, 0.1, 0.1), rotate=(0, 0, 0))
+'''
+'''
+no me gusta como se ve :(
+glLookAt(V3(0, 1, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('grass-plant.obj', V3(0, -1, 0), V3(0.1, 0.1, 0.1), rotate=(0.2, 0, 0))
+'''
+'''
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral.obj', V3(0, -0.76, 0), V3(0.05, 0.05, 0.05), rotate=(0, 0, -0.2))
+'''
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('fox.obj', V3(0, 0, 0), V3(0.05, 0.05, 0.05), rotate=(0, 0, 0))
+glDrawFigure('LINES')
 glFinish()
