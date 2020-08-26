@@ -371,13 +371,15 @@ class Render(object):
                         tcolor=WHITE
                     )
 
-                if self.customShader:
+                elif self.customShader:
                     selectColor = self.active_shader(
                         self,
                         triangle=(A, B, C),
                         bar=(w, v, u),
                         varying_normals=(nA, nB, nC)
                     )
+                else:
+                    selectColor = self.color
 
                 z = A.z * w + B.z * u + C.z * v
 

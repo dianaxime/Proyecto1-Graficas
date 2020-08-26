@@ -9,6 +9,7 @@
 from lib import Render
 from texture import Texture
 from utils import V2, V3
+from shaders import fragment, ray
 
 bitmap = Render()
 
@@ -111,18 +112,9 @@ def glFinish(filename='out.bmp'):
 glCreateWindow(1000, 1000)
 glClear()
 glCustomClear()
-#glIsActiveNormals(True)
-#glIsActiveTexture(True)
-#glChangeTexture('bamboo_shark.bmp')
-'''
-glLookAt(V3(0, 0, -0.5), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('bamboo_shark.obj', V3(0, 0.5, 0), V3(0.001, 0.001, 0.001), rotate=(-0.50, -0.50, 0))
-'''
-'''
-glLookAt(V3(1, 1, 100), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('CitizenSnipsV2_1.obj', V3(0, 0, 0), V3(3, 3, 3), rotate=(0, 0, 0))
-'''
 
+
+'''
 glColor(0.37, 0.21, 0.06)
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('coral.obj', V3(-0.4, -0.80, 0), V3(0.04, 0.04, 0.04), rotate=(0, 0, -0.2))
@@ -140,7 +132,6 @@ glDrawFigure('LINES')
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('coral.obj', V3(0.8, -0.76, 0), V3(0.05, 0.05, 0.05), rotate=(0, 0, -0.2))
 glDrawFigure('LINES')
-
 
 
 glColor(0.11, 0.01, 0.02)
@@ -161,6 +152,25 @@ glDrawFigure('LINES')
 glColor(0.11, 0.01, 0.02)
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('decoration.obj', V3(-0.9, -1, 0), V3(0.005, 0.005, 0.005), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+
+glColor(0.02, 0.25, 0.26)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-purple.obj', V3(0.8, -0.95, 0), V3(0.25, 0.20, 0.25), rotate=(0.40, 0, 0))
+glDrawFigure('LINES')
+
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-purple.obj', V3(-0.8, -0.95, 0), V3(0.25, 0.20, 0.25), rotate=(0.40, 0, 0))
+glDrawFigure('LINES')
+
+glColor(0.6, 0.49, 0.09)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-purple.obj', V3(0.8, -0.8, 0), V3(0.25, 0.20, 0.25), rotate=(0.40, 0, 0))
+glDrawFigure('LINES')
+
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-purple.obj', V3(0, -0.8, 0), V3(0.25, 0.20, 0.25), rotate=(0.40, 0, 0))
 glDrawFigure('LINES')
 
 
@@ -242,9 +252,8 @@ glLoad('coral-plants.obj', V3(0.6, -1, 0), V3(0.5, 0.1, 0.1), rotate=(0, 0, 0))
 glDrawFigure('LINES')
 
 '''
-glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('coral-purple.obj', V3(0.8, -0.9, 0), V3(0.25, 0.25, 0.25), rotate=(0.75, 0, 0))
-'''
+
+
 '''
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('tuna.obj', V3(0, 0, 0), V3(0.1, 0.1, 0.1), rotate=(0, 0, 0))
@@ -254,13 +263,24 @@ glLoad('tuna.obj', V3(0, 0, 0), V3(0.1, 0.1, 0.1), rotate=(0, 0, 0))
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('TropicalFish03.obj', V3(-0.2, -0.2, 0), V3(0.0005, 0.0005, 0.0005), rotate=(1, 1, 0))
 '''
+#glIsActiveTexture(True)
+#glChangeTexture('ray.bmp')
 
-
-
-'''
+glIsActiveNormals(True)
+glIsActiveShader(True)
+glChangeShader(ray)
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(1, 0, 0))
 glLoad('ray.obj', V3(0.5, 0.05, 0), V3(0.003, 0.003, 0.003), rotate=(0, 0, -0.3))
-'''
+glDrawFigure('CUSTOM')
+
+glIsActiveNormals(False)
+glIsActiveShader(False)
+glColor(0.09, 0.15, 0.36)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(1, 0, 0))
+glLoad('ray.obj', V3(0.5, 0.05, 0), V3(0.003, 0.003, 0.003), rotate=(0, 0, -0.3))
+glDrawFigure('LINES')
+
+
 '''
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('TropicalFish01.obj', V3(-0.2, -0.2, 0), V3(0.0005, 0.0005, 0.0005), rotate=(1, 1, 0))
@@ -317,4 +337,14 @@ glLoad('TropicalFish14.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rota
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('TropicalFish15.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
 '''
+
+'''
+glLookAt(V3(0, 0, -0.5), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('bamboo_shark.obj', V3(0, 0.5, 0), V3(0.001, 0.001, 0.001), rotate=(-0.50, -0.50, 0))
+'''
+'''
+glLookAt(V3(1, 1, 100), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('CitizenSnipsV2_1.obj', V3(0, 0, 0), V3(3, 3, 3), rotate=(0, 0, 0))
+'''
+
 glFinish()
