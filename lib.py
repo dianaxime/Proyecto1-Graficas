@@ -415,22 +415,66 @@ class Render(object):
         vertex_buffer_object = []
 
         for face in model.faces:
-            for facepart in face:
-                vertex = self.transform(V3(*model.vertices[facepart[0]-1]))
-                vertex_buffer_object.append(vertex)
-
-            if self.isActiveTexture:
+            vcount = len(face)
+            
+            if vcount == 3:
                 for facepart in face:
-                    if len(model.tvertices[facepart[1]-1]) == 2:
-                        tvertex = V2(*model.tvertices[facepart[1]-1])
-                    elif len(model.tvertices[facepart[1]-1]) == 3:
-                        tvertex = V3(*model.tvertices[facepart[1]-1])
-                    vertex_buffer_object.append(tvertex)
+                    vertex = self.transform(V3(*model.vertices[facepart[0]-1]))
+                    vertex_buffer_object.append(vertex)
 
-            if self.activeNormals:
-                for facepart in face:
-                    nvertex = V3(*model.normals[facepart[2]-1])
-                    vertex_buffer_object.append(nvertex)
+                if self.isActiveTexture:
+                    for facepart in face:
+                        if len(model.tvertices[facepart[1]-1]) == 2:
+                            tvertex = V2(*model.tvertices[facepart[1]-1])
+                        elif len(model.tvertices[facepart[1]-1]) == 3:
+                            tvertex = V3(*model.tvertices[facepart[1]-1])
+                        vertex_buffer_object.append(tvertex)
+
+                if self.activeNormals:
+                    for facepart in face:
+                        nvertex = V3(*model.normals[facepart[2]-1])
+                        vertex_buffer_object.append(nvertex)
+            elif vcount == 4:
+                for index in range(3):
+                    facepart = face[index]
+                    vertex = self.transform(V3(*model.vertices[facepart[0]-1]))
+                    vertex_buffer_object.append(vertex)
+
+                if self.isActiveTexture:
+                    for index in range(3):
+                        facepart = face[index]
+                        if len(model.tvertices[facepart[1]-1]) == 2:
+                            tvertex = V2(*model.tvertices[facepart[1]-1])
+                        elif len(model.tvertices[facepart[1]-1]) == 3:
+                            tvertex = V3(*model.tvertices[facepart[1]-1])
+                        vertex_buffer_object.append(tvertex)
+
+                if self.activeNormals:
+                    for index in range(3):
+                        facepart = face[index]
+                        nvertex = V3(*model.normals[facepart[2]-1])
+                        vertex_buffer_object.append(nvertex)
+
+                for index in [3, 0, 2]:
+                    facepart = face[index]
+                    vertex = self.transform(V3(*model.vertices[facepart[0]-1]))
+                    vertex_buffer_object.append(vertex)
+
+                if self.isActiveTexture:
+                    for index in [3, 0, 2]:
+                        facepart = face[index]
+                        if len(model.tvertices[facepart[1]-1]) == 2:
+                            tvertex = V2(*model.tvertices[facepart[1]-1])
+                        elif len(model.tvertices[facepart[1]-1]) == 3:
+                            tvertex = V3(*model.tvertices[facepart[1]-1])
+                        vertex_buffer_object.append(tvertex)
+
+                if self.activeNormals:
+                    for index in [3, 0, 2]:
+                        facepart = face[index]
+                        nvertex = V3(*model.normals[facepart[2]-1])
+                        vertex_buffer_object.append(nvertex)
+
 
         self.active_vertex_array = iter(vertex_buffer_object)
 

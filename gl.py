@@ -143,7 +143,11 @@ glLoad('grass-plant.obj', V3(0, -1, 0), V3(0.1, 0.1, 0.1), rotate=(0.2, 0, 0))
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('coral.obj', V3(0, -0.76, 0), V3(0.05, 0.05, 0.05), rotate=(0, 0, -0.2))
 '''
+'''
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('fox.obj', V3(0, 0, 0), V3(0.05, 0.05, 0.05), rotate=(0, 0, 0))
+glLoad('TropicalFish03.obj', V3(-0.2, -0.2, 0), V3(0.0005, 0.0005, 0.0005), rotate=(1, 1, 0))
+'''
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('decoration.obj', V3(0, 0, 0), V3(0.01, 0.01, 0.01), rotate=(0, 0, 0))
 glDrawFigure('LINES')
 glFinish()
