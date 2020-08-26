@@ -122,10 +122,125 @@ glLoad('bamboo_shark.obj', V3(0, 0.5, 0), V3(0.001, 0.001, 0.001), rotate=(-0.50
 glLookAt(V3(1, 1, 100), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('CitizenSnipsV2_1.obj', V3(0, 0, 0), V3(3, 3, 3), rotate=(0, 0, 0))
 '''
-'''
+
+glColor(0.37, 0.21, 0.06)
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('coral-plants.obj', V3(-0.9, -1, 0), V3(0.1, 0.1, 0.1), rotate=(0, 0, 0))
-'''
+glLoad('coral.obj', V3(-0.4, -0.80, 0), V3(0.04, 0.04, 0.04), rotate=(0, 0, -0.2))
+glDrawFigure('LINES')
+
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral.obj', V3(0.4, -0.85, 0), V3(0.03, 0.03, 0.03), rotate=(0, 0, -0.2))
+glDrawFigure('LINES')
+
+glColor(0.78, 0.73, 0.65)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral.obj', V3(0, -0.76, 0), V3(0.05, 0.05, 0.05), rotate=(0, 0, -0.2))
+glDrawFigure('LINES')
+
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral.obj', V3(0.8, -0.76, 0), V3(0.05, 0.05, 0.05), rotate=(0, 0, -0.2))
+glDrawFigure('LINES')
+
+
+
+glColor(0.11, 0.01, 0.02)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('decoration.obj', V3(-1, -1, 0), V3(0.02, 0.02, 0.02), rotate=(0, -0.5, 0))
+glDrawFigure('LINES')
+
+glColor(0.52, 0.19, 0.24)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('decoration.obj', V3(-1, -1, 0), V3(0.01, 0.01, 0.01), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glColor(0.11, 0.01, 0.02)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('decoration.obj', V3(-1, -0.9, 0), V3(0.005, 0.005, 0.005), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glColor(0.11, 0.01, 0.02)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('decoration.obj', V3(-0.9, -1, 0), V3(0.005, 0.005, 0.005), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+
+glColor(0.26, 0.47, 0.42)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(-0.9, -1, 0), V3(0.5, 0.1, 0.1), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glColor(0.77, 0.73, 0.38)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(-0.8, -1, 0), V3(0.5, 0.2, 0.2), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glColor(0.57, 0.28, 0.16)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(-0.7, -1, 0), V3(0.5, 0.1, 0.1), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glColor(0.26, 0.47, 0.42)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(-0.6, -1, 0), V3(0.5, 0.1, 0.1), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glColor(0.57, 0.28, 0.16)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(-0.5, -1, 0), V3(0.5, 0.1, 0.1), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glColor(0.77, 0.73, 0.38)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(-0.4, -1, 0), V3(0.5, 0.1, 0.1), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(-0.3, -1, 0), V3(0.5, 0.2, 0.2), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glColor(0.57, 0.28, 0.16)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(-0.2, -1, 0), V3(0.5, 0.1, 0.1), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glColor(0.77, 0.73, 0.38)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(-0.1, -1, 0), V3(0.5, 0.1, 0.1), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glColor(0.26, 0.47, 0.42)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(0, -1, 0), V3(0.5, 0.1, 0.1), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(0.1, -1, 0), V3(0.5, 0.1, 0.1), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glColor(0.77, 0.73, 0.38)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(0.2, -1, 0), V3(0.5, 0.2, 0.2), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(0.3, -1, 0), V3(0.5, 0.1, 0.1), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glColor(0.26, 0.47, 0.42)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(0.4, -1, 0), V3(0.5, 0.1, 0.1), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glColor(0.57, 0.28, 0.16)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(0.5, -1, 0), V3(0.5, 0.2, 0.2), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glColor(0.77, 0.73, 0.38)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('coral-plants.obj', V3(0.6, -1, 0), V3(0.5, 0.1, 0.1), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
 '''
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('coral-purple.obj', V3(0.8, -0.9, 0), V3(0.25, 0.25, 0.25), rotate=(0.75, 0, 0))
@@ -134,23 +249,14 @@ glLoad('coral-purple.obj', V3(0.8, -0.9, 0), V3(0.25, 0.25, 0.25), rotate=(0.75,
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('tuna.obj', V3(0, 0, 0), V3(0.1, 0.1, 0.1), rotate=(0, 0, 0))
 '''
-'''
-no me gusta como se ve :(
-glLookAt(V3(0, 1, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('grass-plant.obj', V3(0, -1, 0), V3(0.1, 0.1, 0.1), rotate=(0.2, 0, 0))
-'''
-'''
-glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('coral.obj', V3(0, -0.76, 0), V3(0.05, 0.05, 0.05), rotate=(0, 0, -0.2))
-'''
+
 '''
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('TropicalFish03.obj', V3(-0.2, -0.2, 0), V3(0.0005, 0.0005, 0.0005), rotate=(1, 1, 0))
 '''
-'''
-glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('decoration.obj', V3(0, 0, 0), V3(0.01, 0.01, 0.01), rotate=(0, 0, 0))
-'''
+
+
+
 '''
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(1, 0, 0))
 glLoad('ray.obj', V3(0.5, 0.05, 0), V3(0.003, 0.003, 0.003), rotate=(0, 0, -0.3))
@@ -207,7 +313,8 @@ glLoad('TropicalFish13.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rota
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('TropicalFish14.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
 '''
+'''
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('TropicalFish15.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
-glDrawFigure('LINES')
+'''
 glFinish()
