@@ -114,7 +114,6 @@ glClear()
 glCustomClear()
 
 
-'''
 glColor(0.37, 0.21, 0.06)
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('coral.obj', V3(-0.4, -0.80, 0), V3(0.04, 0.04, 0.04), rotate=(0, 0, -0.2))
@@ -282,7 +281,6 @@ glLoad('bamboo_shark.obj', V3(-0.5, 0.5, 0), V3(0.001, 0.001, 0.001), rotate=(-0
 glDrawFigure('LINES')
 
 
-'''
 glColor(0.75, 0.69, 0.03)
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('tuna.obj', V3(0, 0, 0), V3(0.1, 0.1, 0.1), rotate=(0, 0, 0))
