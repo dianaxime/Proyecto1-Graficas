@@ -495,14 +495,23 @@ class Render(object):
         # light intensity
         iA, iB, iC = [dot(n, self.light) for n in (nA, nB, nC)]
         intensity = w * iA + u * iB + v * iC
-        return color(
-            int(tcolor[2] * intensity) if (tcolor[0] * intensity >
-                                           0 and tcolor[0] * intensity < 255) else 0,
-            int(tcolor[1] * intensity) if (tcolor[1] * intensity >
-                                           0 and tcolor[1] * intensity < 255) else 0,
-            int(tcolor[0] * intensity) if (tcolor[2] * intensity >
-                                           0 and tcolor[2] * intensity < 255) else 0
-        )
+
+        r = int(tcolor[2] * intensity)
+        if r < 0:
+            r = 0
+        elif r > 255:
+            r = 255
+        g = int(tcolor[1] * intensity)
+        if g < 0:
+            g = 0
+        elif g > 255:
+            g = 255
+        b = int(tcolor[0] * intensity)
+        if b < 0:
+            b = 0
+        elif b > 255:
+            b = 255
+        return color(r, g, b)
 
     def gradient(self, **kwargs):
         # barycentric

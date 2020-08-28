@@ -9,7 +9,7 @@
 from lib import Render
 from texture import Texture
 from utils import V2, V3
-from shaders import fragment, ray
+from shaders import fragment, ray, shark
 
 bitmap = Render()
 
@@ -251,20 +251,6 @@ glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('coral-plants.obj', V3(0.6, -1, 0), V3(0.5, 0.1, 0.1), rotate=(0, 0, 0))
 glDrawFigure('LINES')
 
-'''
-
-
-'''
-glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('tuna.obj', V3(0, 0, 0), V3(0.1, 0.1, 0.1), rotate=(0, 0, 0))
-'''
-
-'''
-glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('TropicalFish03.obj', V3(-0.2, -0.2, 0), V3(0.0005, 0.0005, 0.0005), rotate=(1, 1, 0))
-'''
-#glIsActiveTexture(True)
-#glChangeTexture('ray.bmp')
 
 glIsActiveNormals(True)
 glIsActiveShader(True)
@@ -281,14 +267,112 @@ glLoad('ray.obj', V3(0.5, 0.05, 0), V3(0.003, 0.003, 0.003), rotate=(0, 0, -0.3)
 glDrawFigure('LINES')
 
 
-'''
+glIsActiveNormals(True)
+glIsActiveShader(True)
+glChangeShader(shark)
+glLookAt(V3(0, 0, -0.5), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('bamboo_shark.obj', V3(-0.5, 0.5, 0), V3(0.001, 0.001, 0.001), rotate=(-0.50, -0.50, 0))
+glDrawFigure('CUSTOM')
+
+glIsActiveNormals(False)
+glIsActiveShader(False)
+glColor(0.43, 0.59, 0.67)
+glLookAt(V3(0, 0, -0.5), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('bamboo_shark.obj', V3(-0.5, 0.5, 0), V3(0.001, 0.001, 0.001), rotate=(-0.5, -0.5, 0))
+glDrawFigure('LINES')
+
+
+glColor(0.75, 0.69, 0.03)
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('TropicalFish01.obj', V3(-0.2, -0.2, 0), V3(0.0005, 0.0005, 0.0005), rotate=(1, 1, 0))
-'''
-'''
+glLoad('tuna.obj', V3(0, 0, 0), V3(0.1, 0.1, 0.1), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('TropicalFish02.obj', V3(-0.2, -0.2, 0), V3(0.0005, 0.0005, 0.0005), rotate=(1, 1, 0))
+glLoad('tuna.obj', V3(0, 0, 0), V3(0.1, 0.1, 1), rotate=(0, 0, 0))
+glDrawFigure('FLAT')
+
+
+glColor(0.75, 0.69, 0.03)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('tuna.obj', V3(0, 0, 0), V3(0.01, 0.01, 0.01), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glColor(0.75, 0.69, 0.03)
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('tuna.obj', V3(0, -0.1, 0), V3(0.05, 0.05, 0.05), rotate=(0, 0, 0))
+glDrawFigure('LINES')
+
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('tuna.obj', V3(0, -0.1, 0), V3(0.05, 0.05, 0.5), rotate=(0, 0, 0))
+glDrawFigure('FLAT')
+
+
+
+
 '''
+
+glIsActiveTexture(True)
+glIsActiveNormals(True)
+glChangeTexture('TropicalFish10.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish10.obj', V3(-0.25, -0.2, 0), V3(0.0005, 0.0005, 0.0005), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish10.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish10.obj', V3(-0.3, -0.3, 0), V3(0.0002, 0.0002, 0.0002), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish10.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish10.obj', V3(-0.15, -0.15, 0), V3(0.0001, 0.0001, 0.0001), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish10.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish10.obj', V3(-0.5, -0.4, 0), V3(0.0002, 0.0002, 0.0002), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish10.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish10.obj', V3(-0.45, -0.30, 0), V3(0.0002, 0.0002, 0.0002), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish10.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish10.obj', V3(-0.40, -0.20, 0), V3(0.0002, 0.0002, 0.0002), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+
+
+
+
+
+glChangeTexture('TropicalFish01.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish01.obj', V3(-0.7, -0.4, 0), V3(0.0003, 0.0003, 0.0003), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish01.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish01.obj', V3(0, 0, 0), V3(0.0005, 0.0005, 0.0005), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish02.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish02.obj', V3(-0.8, -0.1, 0), V3(0.0005, 0.0005, 0.0005), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish02.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish02.obj', V3(-0.6, -0.2, 0), V3(0.0003, 0.0003, 0.0003), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish03.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish03.obj', V3(-0.2, 0.2, 0), V3(0.0004, 0.0004, 0.0004), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
 '''
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('TropicalFish04.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
@@ -313,10 +397,7 @@ glLoad('TropicalFish08.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rota
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('TropicalFish09.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
 '''
-'''
-glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('TropicalFish10.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
-'''
+
 '''
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('TropicalFish11.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
@@ -338,13 +419,5 @@ glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('TropicalFish15.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
 '''
 
-'''
-glLookAt(V3(0, 0, -0.5), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('bamboo_shark.obj', V3(0, 0.5, 0), V3(0.001, 0.001, 0.001), rotate=(-0.50, -0.50, 0))
-'''
-'''
-glLookAt(V3(1, 1, 100), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('CitizenSnipsV2_1.obj', V3(0, 0, 0), V3(3, 3, 3), rotate=(0, 0, 0))
-'''
 
 glFinish()
