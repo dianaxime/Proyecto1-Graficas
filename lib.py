@@ -378,6 +378,14 @@ class Render(object):
                         bar=(w, v, u),
                         varying_normals=(nA, nB, nC)
                     )
+                
+                elif self.isActiveTexture and self.customShader:
+                    selectColor = self.active_shader(
+                        bar=(w, v, u),
+                        texture_coords=(tx, ty),
+                        varying_normals=(nA, nB, nC)
+                    )
+
                 else:
                     selectColor = self.color
 

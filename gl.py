@@ -9,7 +9,7 @@
 from lib import Render
 from texture import Texture
 from utils import V2, V3
-from shaders import fragment, ray, shark
+from shaders import fragment, ray, shark, peces
 
 bitmap = Render()
 
@@ -282,6 +282,7 @@ glLoad('bamboo_shark.obj', V3(-0.5, 0.5, 0), V3(0.001, 0.001, 0.001), rotate=(-0
 glDrawFigure('LINES')
 
 
+'''
 glColor(0.75, 0.69, 0.03)
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('tuna.obj', V3(0, 0, 0), V3(0.1, 0.1, 0.1), rotate=(0, 0, 0))
@@ -290,7 +291,6 @@ glDrawFigure('LINES')
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('tuna.obj', V3(0, 0, 0), V3(0.1, 0.1, 1), rotate=(0, 0, 0))
 glDrawFigure('FLAT')
-
 
 glColor(0.75, 0.69, 0.03)
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
@@ -306,10 +306,6 @@ glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('tuna.obj', V3(0, -0.1, 0), V3(0.05, 0.05, 0.5), rotate=(0, 0, 0))
 glDrawFigure('FLAT')
 
-
-
-
-'''
 
 glIsActiveTexture(True)
 glIsActiveNormals(True)
@@ -344,10 +340,6 @@ glLoad('TropicalFish10.obj', V3(-0.40, -0.20, 0), V3(0.0002, 0.0002, 0.0002), ro
 glDrawFigure('TEXTURE')
 
 
-
-
-
-
 glChangeTexture('TropicalFish01.bmp')
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('TropicalFish01.obj', V3(-0.7, -0.4, 0), V3(0.0003, 0.0003, 0.0003), rotate=(0, -1, 0))
@@ -355,7 +347,7 @@ glDrawFigure('TEXTURE')
 
 glChangeTexture('TropicalFish01.bmp')
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('TropicalFish01.obj', V3(0, 0, 0), V3(0.0005, 0.0005, 0.0005), rotate=(0, -1, 0))
+glLoad('TropicalFish01.obj', V3(-0.2, 0, 0), V3(0.0005, 0.0005, 0.0005), rotate=(0, -1, 0))
 glDrawFigure('TEXTURE')
 
 glChangeTexture('TropicalFish02.bmp')
@@ -373,51 +365,92 @@ glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
 glLoad('TropicalFish03.obj', V3(-0.2, 0.2, 0), V3(0.0004, 0.0004, 0.0004), rotate=(0, -1, 0))
 glDrawFigure('TEXTURE')
 
-'''
+glChangeTexture('TropicalFish04.bmp')
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('TropicalFish04.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
-'''
-'''
-glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('TropicalFish05.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
-'''
-'''
-glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('TropicalFish06.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
-'''
-'''
-glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('TropicalFish07.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
-'''
-'''
-glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('TropicalFish08.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
-'''
-'''
-glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('TropicalFish09.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
-'''
+glLoad('TropicalFish04.obj', V3(-0.5, 0.1, 0), V3(0.0002, 0.0002, 0.0002), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
 
-'''
+glChangeTexture('TropicalFish04.bmp')
 glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('TropicalFish11.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
-'''
-'''
-glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('TropicalFish12.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
-'''
-'''
-glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('TropicalFish13.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
-'''
-'''
-glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('TropicalFish14.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
-'''
-'''
-glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
-glLoad('TropicalFish15.obj', V3(-0.2, -0.2, 0), V3(0.0008, 0.0008, 0.0008), rotate=(1, 1, 0))
-'''
+glLoad('TropicalFish04.obj', V3(0.3, -0.3, 0), V3(0.0005, 0.0005, 0.0005), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
 
+glChangeTexture('TropicalFish04.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish04.obj', V3(0, -0.5, 0), V3(0.0002, 0.0002, 0.0002), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish05.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish05.obj', V3(0.1, -0.4, 0), V3(0.0003, 0.0003, 0.0003), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish05.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish05.obj', V3(-0.75, 0.1, 0), V3(0.0005, 0.0005, 0.0005), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish06.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish06.obj', V3(0, -0.3, 0), V3(0.0003, 0.0003, 0.0003), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish07.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish07.obj', V3(0.5, -0.15, 0), V3(0.0003, 0.0003, 0.0003), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish07.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish07.obj', V3(0.75, -0.5, 0), V3(0.0003, 0.0003, 0.0003), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish08.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish08.obj', V3(-0.15, -0.55, 0), V3(0.0003, 0.0003, 0.0003), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish09.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish09.obj', V3(0.6, -0.3, 0), V3(0.0003, 0.0003, 0.0003), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish11.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish11.obj', V3(-0.2, -0.4, 0), V3(0.0003, 0.0003, 0.0003), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish11.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish11.obj', V3(0.9, 0.1, 0), V3(0.0003, 0.0003, 0.0003), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish14.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish14.obj', V3(0.7, 0, 0), V3(0.0003, 0.0003, 0.0003), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+glChangeTexture('TropicalFish14.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish14.obj', V3(0.8, -0.2, 0), V3(0.0003, 0.0003, 0.0003), rotate=(0, -1, 0))
+glDrawFigure('TEXTURE')
+
+
+glIsActiveShader(True)
+glChangeShader(peces)
+glChangeTexture('TropicalFish12.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish12.obj', V3(0.5, -0.5, 0), V3(0.0004, 0.0004, 0.0004), rotate=(0, -1, 0))
+glDrawFigure('CUSTOM')
+
+glChangeTexture('TropicalFish13.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish13.obj', V3(-0.85, -0.5, 0), V3(0.0004, 0.0004, 0.0004), rotate=(0, -1, 0))
+glDrawFigure('CUSTOM')
+
+glChangeTexture('TropicalFish15.bmp')
+glLookAt(V3(0, 0, 1), V3(0, 0, 0), V3(0, 1, 0))
+glLoad('TropicalFish15.obj', V3(0.25, -0.55, 0), V3(0.0003, 0.0003, 0.0003), rotate=(0, -1, 0))
+glDrawFigure('CUSTOM')
 
 glFinish()
